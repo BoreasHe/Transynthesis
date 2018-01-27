@@ -21,7 +21,7 @@ public class Manager : MonoBehaviour {
     public static bool IsEvoluting = false;
 
     //stage
-    Stage stage2;
+    Stage2 stage2;
 
     void Start () {
         plants = new List<GameObject>();
@@ -45,7 +45,7 @@ public class Manager : MonoBehaviour {
             plants[i - 1].SetActive(false);
         }
         plants[0].SetActive(true);
-        stage2 = GameObject.Find("StageHandler").GetComponent<Stage>();
+        stage2 = GameObject.Find("StageHandler").GetComponent<Stage2>();
 }
    public void UpdateText()
     {
