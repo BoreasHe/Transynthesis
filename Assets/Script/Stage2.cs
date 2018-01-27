@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Stage : MonoBehaviour {
-    int StageNo=2;
+public class Stage2 : MonoBehaviour {
     bool started = false;
     public SpriteRenderer sr;
 
