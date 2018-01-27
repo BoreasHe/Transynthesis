@@ -38,8 +38,8 @@ public class Manager : MonoBehaviour {
         ItemText = GameObject.Find("ItemNumber").GetComponent<Text>();
 
         audio = GetComponent<AudioSource>();
-        plant = GameObject.Find("seed");
-        plant2Sprite = Resources.Load<Sprite>("Materials/germination");
+        plant = GameObject.Find("Seed");
+        plant2Sprite = Resources.Load<Sprite>("Picture/PlantStages/stage2");
         stage2 = GameObject.Find("StageHandler").GetComponent<Stage>();
  
 }
@@ -77,7 +77,7 @@ public class Manager : MonoBehaviour {
                     if(thisRoundWeHave.Contains(2))
                         if (thisRoundWeHave.Contains(6))
                         {   
-                            object[] parms = new object[3] {5.0f, plant2Sprite, plant.GetComponent<SpriteRenderer>().sprite };
+                            object[] parms = new object[3] {5.0f, plant2Sprite, plant.GetComponent<Image>().sprite};
                                 StartCoroutine("CallEvolution", parms);
                         }
                 Reset();
@@ -111,7 +111,7 @@ public class Manager : MonoBehaviour {
 
     IEnumerator SlowingDown(object[] parms)
     {
-        Sprite plantSp = plant.GetComponent<SpriteRenderer>().sprite;
+        Sprite plantSp = plant.GetComponent<Image>().sprite;
         float time = (float)parms[0];
         Sprite nextSp = (Sprite)parms[1];
         Sprite currentSp = (Sprite)parms[2];
@@ -120,7 +120,7 @@ public class Manager : MonoBehaviour {
         {
             if ((float)parms2[0] <= 0.01)
             {
-                plant.GetComponent<SpriteRenderer>().sprite = nextSp;
+                plant.GetComponent<Image>().sprite = nextSp;
                 RoundNo++;
                 IsEvoluting = false;
                 stage2.CallIE();
@@ -128,10 +128,15 @@ public class Manager : MonoBehaviour {
                 Debug.Log(" "+ RoundNo);
                 break;
             }
-            if (plantSp==currentSp)
-                plant.GetComponent<SpriteRenderer>().sprite = nextSp;
+            if (plantSp == currentSp)
+            {
+
+                plant.GetComponent<Image>().sprite = nextSp;
+            }
             else
-                plant.GetComponent<SpriteRenderer>().sprite = currentSp;
+            {
+                plant.GetComponent<Image>().sprite = currentSp;
+            }
             yield return new WaitForSeconds(time);
         }
     }
