@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Stage : MonoBehaviour {
     int StageNo=2;
@@ -26,11 +27,11 @@ public class Stage : MonoBehaviour {
         {
             started = true;
             sunLight.SetActive(true);
-            Color colorNg = sunLight.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
+            Color colorNg = sunLight.GetComponent<Image>().color;
             float changeA = 0.01f;
             while (true)
             {
-                Debug.Log("colorNg.a " + colorNg.a);
+              //  Debug.Log("colorNg.a " + colorNg.a);
                 if (colorNg.a >= 0.9)
                     changeA = -0.05f;
                 else if (colorNg.a <= 0.6)
@@ -38,7 +39,7 @@ public class Stage : MonoBehaviour {
                     changeA = +0.05f;
                 }
                 colorNg.a += changeA;
-                sunLight.transform.GetChild(0).GetComponent<SpriteRenderer>().color = colorNg;
+                sunLight.GetComponent<Image>().color = colorNg;
                 yield return new WaitForSeconds(0.1f);
             }
         }
